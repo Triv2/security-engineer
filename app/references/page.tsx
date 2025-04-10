@@ -1,4 +1,5 @@
 import Link from "next/link"
+import React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Server, Terminal, Cloud, PenToolIcon as Tool, Award, FlaskRoundIcon as Flask, Briefcase } from "lucide-react"
 import { WindowsIcon } from "@/components/windows-icon"
@@ -63,16 +64,14 @@ export default function ReferencesPage() {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {references.map((reference) => (
+      {references.map((reference) => (
           <Link key={reference.path} href={reference.path} className="no-underline">
             <Card className="h-full hover:shadow-md transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  {typeof reference.icon === "function" ? (
-                    <reference.icon className="h-8 w-8 text-primary mt-1" />
-                  ) : (
-                    <reference.icon className="h-8 w-8 text-primary mt-1" />
-                  )}
+                  {React.createElement(reference.icon, {
+                    className: "h-8 w-8 text-primary mt-1"
+                  })}
                   <div>
                     <h2 className="text-xl font-semibold mb-2">{reference.title}</h2>
                     <p className="text-muted-foreground">{reference.description}</p>
