@@ -4,6 +4,7 @@ import "./globals.css"
 import Navbar from "@/components/navbar"
 import { ThemeProvider } from "@/components/theme-provider"
 
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {

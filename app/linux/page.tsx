@@ -70,7 +70,7 @@ export default function LinuxPage() {
                         <strong>User (u):</strong> The owner of the file
                       </li>
                       <li>
-                        <strong>Group (g):</strong> Users who are members of the file's group
+                        <strong>Group (g):</strong> Users who are members of the file&apos;s group
                       </li>
                       <li>
                         <strong>Others (o):</strong> All other users
@@ -829,7 +829,7 @@ sealert -a /var/log/audit/audit.log`}
                     <AlertTitle>SELinux Best Practices</AlertTitle>
                     <AlertDescription>
                       <ul className="list-disc pl-5">
-                        <li>Don't disable SELinux; use permissive mode for troubleshooting</li>
+                        <li>Don&apos;t disable SELinux; use permissive mode for troubleshooting</li>
                         <li>Use audit2allow to create custom policies for legitimate access needs</li>
                         <li>Regularly review and analyze SELinux denial logs</li>
                         <li>Test policy changes in permissive mode before enforcing</li>
@@ -845,9 +845,9 @@ sealert -a /var/log/audit/audit.log`}
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p>
-                    AppArmor is a Mandatory Access Control system that restricts programs' capabilities with per
-                    Mandatory Access Control system that restricts programs' capabilities with per-program profiles.
-                    It's commonly used in Ubuntu and Debian-based distributions.
+                    AppArmor is a Mandatory Access Control system that restricts programs&apos; capabilities with per
+                    Mandatory Access Control system that restricts programs&apos; capabilities with per-program profiles.
+                    It&apos;s commonly used in Ubuntu and Debian-based distributions.
                   </p>
 
                   <div>
@@ -1693,7 +1693,7 @@ rkhunter --propupd`}
                     <ShieldAlert className="h-4 w-4" />
                     <AlertTitle>Important Note</AlertTitle>
                     <AlertDescription>
-                      If you suspect a rootkit infection, don't trust the infected system. Boot from a clean live CD/USB
+                      If you suspect a rootkit infection, don&apos;t trust the infected system. Boot from a clean live CD/USB
                       and scan the system from there, as rootkits can hide from detection tools running on the
                       compromised system.
                     </AlertDescription>

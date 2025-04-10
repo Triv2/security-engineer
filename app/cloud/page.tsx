@@ -88,11 +88,11 @@ export default function CloudPage() {
                   </div>
 
                   <div className="mt-4">
-                    <img
+                    {/* <img
                       src="/placeholder.svg?height=300&width=500"
                       alt="Shared Responsibility Model Diagram"
                       className="rounded-md border"
-                    />
+                    /> */}
                   </div>
                 </CardContent>
               </Card>
@@ -143,7 +143,7 @@ export default function CloudPage() {
                       source:
                     </p>
                     <ul className="space-y-1 list-disc pl-5">
-                      <li>"Never trust, always verify"</li>
+                      <li>&quot;Never trust, always verify&quot;</li>
                       <li>Strong authentication for all access</li>
                       <li>Micro-segmentation</li>
                       <li>Continuous validation</li>
@@ -1007,7 +1007,7 @@ resource "aws_s3_bucket_policy" "secure_bucket_policy" {
         Action    = "s3:*"
         Resource = [
           aws_s3_bucket.secure_bucket.arn,
-          "${aws_s3_bucket.secure_bucket.arn}/*"
+          "$aws_s3_bucket.secure_bucket.arn}/*"
         ]
         Condition = {
           Bool = {
@@ -1270,7 +1270,7 @@ Set-AzKeyVaultKeyRotationPolicy `+
                         <strong>Agent-based DLP:</strong> Monitors data on endpoints
                       </li>
                       <li>
-                        <strong>Native cloud DLP:</strong> Uses cloud provider's DLP services
+                        <strong>Native cloud DLP:</strong> Uses cloud provider&apos;s DLP services
                       </li>
                     </ul>
                   </div>
@@ -1531,7 +1531,7 @@ jobs:
       - name: Run dependency scan
         uses: snyk/actions/node@master
         env:\
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          SNYK_TOKEN: $secrets.SNYK_TOKEN }}
 
       - name: Scan IaC files
         uses: bridgecrewio/checkov-action@master
@@ -1542,7 +1542,7 @@ jobs:
       - name: Build and scan container image
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'my-app:${{ github.sha }}'
+          image-ref: 'my-app:$ github.sha }}'
           format: 'sarif'
           output: 'trivy-results.sarif'
 
@@ -1895,7 +1895,7 @@ Resources:
               <AlertTitle>Shift Left Security</AlertTitle>
               <AlertDescription>
                 <p>
-                  "Shifting left" means moving security earlier in the development lifecycle. This approach helps
+                  &quot;Shifting left&quot; means moving security earlier in the development lifecycle. This approach helps
                   identify and fix security issues before they reach production, reducing cost and risk.
                 </p>
                 <ul className="list-disc pl-5 mt-2">

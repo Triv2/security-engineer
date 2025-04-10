@@ -127,7 +127,7 @@ export default function CertificationsPage() {
                 </h3>
               </div>
               <p className="mb-4">
-                For those who have passed the CISSP exam but don't yet have the required experience.
+                For those who have passed the CISSP exam but don&apos;t yet have the required experience.
               </p>
               <ul className="space-y-2 mb-4">
                 <li>
@@ -1074,7 +1074,7 @@ export default function CertificationsPage() {
             <Shield className="h-4 w-4" />
             <AlertTitle>Certification Tip</AlertTitle>
             <AlertDescription>
-              Don't chase certifications just for the sake of collecting them. Focus on certifications that align with
+              Don&apos;t chase certifications just for the sake of collecting them. Focus on certifications that align with
               your career goals and provide real value for your target roles.
             </AlertDescription>
           </Alert>

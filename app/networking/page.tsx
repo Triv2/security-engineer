@@ -458,7 +458,7 @@ export default function NetworkingPage() {
                       <h3 className="text-lg font-semibold">RDP (Port 3389)</h3>
                       <p className="text-sm text-muted-foreground mb-1">Remote Desktop Protocol</p>
                       <ul className="list-disc pl-5 space-y-1">
-                        <li>Microsoft's protocol for remote desktop access</li>
+                        <li>Microsoft&apos;s protocol for remote desktop access</li>
                         <li>
                           <strong>Security issues:</strong> BlueKeep and related vulnerabilities, brute force
                         </li>
@@ -677,7 +677,7 @@ export default function NetworkingPage() {
                         <br />
                         <br /># Display filter for DNS queries
                         <br />
-                        dns.qry.name contains "example.com"
+                        dns.qry.name contains &quot;example.com&quot;
                       </code>
                     </div>
                   </div>
@@ -830,7 +830,7 @@ export default function NetworkingPage() {
                         <br />
                         <br /># Banner grabbing
                         <br />
-                        echo "" | nc -v 192.168.1.1 22
+                        echo &quot;&quot; | nc -v 192.168.1.1 22
                       </code>
                     </div>
                   </div>
